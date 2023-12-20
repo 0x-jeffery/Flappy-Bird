@@ -5,7 +5,7 @@
 #include <vector>
 
 
-namespace omi
+namespace flappy
 {
     Land::Land(GameDataRef data) : data(data) {
         sf::Sprite sprite_1(data->assets.GetTexture("Land"));

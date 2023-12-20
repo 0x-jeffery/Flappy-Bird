@@ -1,15 +1,11 @@
 #pragma once
 
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <iostream>
-#include <vector>
-
-#include <SFML/Graphics.hpp>
-
 #include "Game.hpp"
-#include "DEFINITIONS.hpp"
+#include <vector>
+#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
-namespace omi{
+namespace flappy{
     class Pipe{
         public:
             std::vector<sf::Sprite> pipe_sprites;

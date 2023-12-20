@@ -6,7 +6,8 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Mouse.hpp>
 
-namespace omi {
+namespace flappy 
+{
     class InputManager{
         public:
             InputManager(){}

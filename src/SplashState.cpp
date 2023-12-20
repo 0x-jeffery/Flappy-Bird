@@ -4,7 +4,7 @@
 #include "DEFINITIONS.hpp"
 #include <SFML/Window/Event.hpp>
 
-namespace omi
+namespace flappy
 {
     SplashState::SplashState(GameDataRef data) : data(data){
         

@@ -1,11 +1,10 @@
 #pragma once
+
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include <map>
-#include <sstream>
 #include <string>
 
-namespace omi
+namespace flappy
 {
     class AssetManager{
         public:

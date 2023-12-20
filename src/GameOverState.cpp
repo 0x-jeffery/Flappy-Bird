@@ -5,7 +5,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <string>
 
-namespace omi
+namespace flappy
 {
     GameOverState::GameOverState(GameDataRef data) : data(data){
         

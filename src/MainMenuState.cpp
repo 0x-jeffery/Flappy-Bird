@@ -6,10 +6,8 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/Mouse.hpp>
-#include <iostream>
-#include <ostream>
 
-namespace omi
+namespace flappy
 {
     MainMenuState::MainMenuState(GameDataRef data) : data(data){
 

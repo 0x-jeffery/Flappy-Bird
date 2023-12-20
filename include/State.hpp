@@ -1,6 +1,6 @@
 #pragma once
 
-namespace omi
+namespace flappy
 {
     class State{
         public:

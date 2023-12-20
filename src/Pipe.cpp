@@ -6,7 +6,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/System/Vector2.hpp>
 
-namespace omi{
+namespace flappy{
     Pipe::Pipe(GameDataRef data) : data(data){
         this->offset = 0;
     }

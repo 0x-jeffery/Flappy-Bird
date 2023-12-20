@@ -1,12 +1,12 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 #include "StateMachine.hpp"
 #include "AssetManager.hpp"
 #include "InputManager.hpp"
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
-namespace omi
+namespace flappy
 {
     struct GameData{
         StateMachine machine;

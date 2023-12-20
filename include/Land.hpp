@@ -1,11 +1,11 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include "Game.hpp"
-#include <SFML/Graphics/Sprite.hpp>
 #include <vector>
+#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
-namespace omi {
+namespace flappy {
     class Land {
         public:
             Land (GameDataRef data);

@@ -1,14 +1,10 @@
 #pragma once
 
+#include "Game.hpp"
 #include <SFML/Graphics/Rect.hpp>
-#include <iostream>
-
 #include <SFML/Graphics.hpp>
 
-#include "Game.hpp"
-#include "DEFINITIONS.hpp"
-
-namespace omi
+namespace flappy
 {
     class Bird{
         public:

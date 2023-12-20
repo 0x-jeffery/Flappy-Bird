@@ -1,3 +1,4 @@
+#include "GameOverState.hpp"
 #include "GameState.hpp"
 #include "DEFINITIONS.hpp"
 #include <SFML/Audio/Sound.hpp>
@@ -5,7 +6,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <string>
 
-namespace omi
+namespace flappy
 {
     GameState::GameState(GameDataRef data) : data(data){ }
 

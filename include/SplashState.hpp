@@ -1,15 +1,12 @@
 #pragma once
 
-#include <iostream>
-
+#include "State.hpp"
+#include "Game.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 
-#include "State.hpp"
-#include "Game.hpp"
-
-namespace omi
+namespace flappy
 {
     class SplashState : public State{
         public:

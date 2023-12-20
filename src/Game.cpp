@@ -1,10 +1,9 @@
+#include "Game.hpp"
+#include "SplashState.hpp"
 #include <stdlib.h>
 #include <time.h>
 
-#include "Game.hpp"
-#include "SplashState.hpp"
-
-namespace omi
+namespace flappy
 {
     Game::Game(int width, int height, std::string title){
         this->data->high_score = 0;

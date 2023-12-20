@@ -1,11 +1,10 @@
 #pragma once
 
+#include "State.hpp"
 #include <memory>
 #include <stack>
 
-#include "State.hpp"
-
-namespace omi
+namespace flappy
 {
     typedef std::unique_ptr<State> StateRef;
 

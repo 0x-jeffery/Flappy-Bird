@@ -1,7 +1,7 @@
 #include "AssetManager.hpp"
 #include <SFML/Audio/SoundBuffer.hpp>
 
-namespace omi
+namespace flappy
 {
     void AssetManager::LoadTexture(std::string name, std::string filename){
         sf::Texture texture;

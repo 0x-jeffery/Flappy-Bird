@@ -1,6 +1,6 @@
 #include "StateMachine.hpp"
 
-namespace omi {
+namespace flappy {
     
     void StateMachine::AddState( StateRef new_state, bool is_replacing ){
         this->is_adding = true;

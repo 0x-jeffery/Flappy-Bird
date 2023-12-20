@@ -4,7 +4,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Transformable.hpp>
 
-namespace omi {
+namespace flappy {
     Bird::Bird(GameDataRef data) : data(data) {
         y_velocity = 0;
         bird_sprite.setTexture(data->assets.GetTexture("Bird Frame 2"));
