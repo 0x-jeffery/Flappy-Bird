@@ -18,13 +18,13 @@ namespace flappy
         land_sprites.push_back(sprite_2);
     }
 
-    void Land::MoveLand(float dt){
+    void Land::MoveLand(float dt, float speed){
         for(unsigned short int i=0; i<land_sprites.size(); i++){
             if(land_sprites.at(i).getPosition().x + land_sprites.at(i).getGlobalBounds().width < 0){
                 land_sprites.at(i).move(land_sprites.at(i).getGlobalBounds().width*2, 0);
             }
 
-            float movement = PIPE_MOVEMENT_SPEED * dt;
+            float movement = PIPE_MOVEMENT_SPEED * dt + speed;
             land_sprites.at(i).move(-movement, 0);
         } 
     }

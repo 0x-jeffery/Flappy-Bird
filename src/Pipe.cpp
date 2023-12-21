@@ -50,8 +50,8 @@ namespace flappy{
         this->SpawnScorePipe();
     }
 
-    void Pipe::MovePipes( float dt ){
-        float movement = PIPE_MOVEMENT_SPEED * dt;
+    void Pipe::MovePipes( float dt, float speed ){
+        float movement = PIPE_MOVEMENT_SPEED * dt + speed;
         for(unsigned short int i = 0; i < this->pipe_sprites.size(); i++){
             this->pipe_sprites.at(i).move(-movement, 0);
         }

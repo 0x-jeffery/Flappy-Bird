@@ -14,7 +14,7 @@ namespace flappy{
             Pipe(GameDataRef data);
             
             void SpawnPipes();
-            void MovePipes( float dt );
+            void MovePipes( float dt, float speed );
             void DrawPipes();
             void RandomizeOffset();
 

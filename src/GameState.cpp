@@ -13,6 +13,7 @@ namespace flappy
     void GameState::Init(){
         this->data->game_score = 0;
         this->paused = 0;
+        this->speed = 0;
 
         this->data->assets.LoadFont("Flappy Font", FLAPPY_FONT_FILEPATH);
         this->data->assets.LoadTexture("Game State Background", GAME_BACKGROUND_FILEPATH);
@@ -85,11 +86,12 @@ namespace flappy
             if(ExistsScoringCollision()){
                 this->score_sound.play();
                 this->data->game_score++;
+                this->speed += 0.05;
             }
-            this->pipe->MovePipes(dt);
+            this->pipe->MovePipes(dt, this->speed);
             this->bird->MoveBird(dt);
-            this->land->MoveLand(dt);
-            if(this->clock.getElapsedTime().asSeconds() > PIPE_SPAWN_FREQUENCY){
+            this->land->MoveLand(dt, this->speed);
+            if(this->clock.getElapsedTime().asSeconds() > PIPE_SPAWN_FREQUENCY - this->speed){
                 this->pipe->SpawnPipes();
                 this->clock.restart();
             }

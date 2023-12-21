@@ -9,7 +9,7 @@ namespace flappy {
     class Land {
         public:
             Land (GameDataRef data);
-            void MoveLand( float dt );
+            void MoveLand( float dt, float speed );
             void DrawLand();
             std::vector<sf::Sprite> Sprites();
 
