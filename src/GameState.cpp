@@ -4,8 +4,6 @@
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Window/Keyboard.hpp>
-#include <iostream>
-#include <ostream>
 #include <string>
 
 namespace flappy
@@ -143,7 +141,6 @@ namespace flappy
                 this->data->scores[i] = score;
                 score = temp;
             }
-            std::cout << this->data->scores[i] << std::endl;
         }
     }
 

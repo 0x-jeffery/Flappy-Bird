@@ -24,6 +24,7 @@ namespace flappy
             sf::Sprite background;
             sf::Sprite title;
             sf::Sprite body;
+            sf::Sprite medal;
             sf::Text game_score;
             sf::Text best_score;
             GameDataRef data;

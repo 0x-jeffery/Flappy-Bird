@@ -15,6 +15,10 @@ namespace flappy
         this->data->assets.LoadTexture("Game Over State Background", GAME_OVER_BACKGROUND_FILEPATH);
         this->data->assets.LoadTexture("Game Over Title", GAME_TITLE_FILEPATH);
         this->data->assets.LoadTexture("Game Over Body", GAME_OVER_BODY_FILEPATH);
+        this->data->assets.LoadTexture("Gold Medal", GOLD_MEDAL_FILEPATH);
+        this->data->assets.LoadTexture("Silver Medal", SILVER_MEDAL_FILEPATH);
+        this->data->assets.LoadTexture("Bronze Medal", BRONZE_MEDAL_FILEPATH);
+
         this->background.setTexture(this->data->assets.GetTexture("Game Over State Background"));
         this->title.setTexture(this->data->assets.GetTexture("Game Over Title"));
         this->title.setOrigin(
@@ -46,6 +50,22 @@ namespace flappy
         this->game_score.setString(std::to_string(this->data->game_score));
         this->game_score.setOrigin(this->game_score.getGlobalBounds().width, this->game_score.getGlobalBounds().height);
         this->game_score.setPosition(int(3*SCREEN_WIDTH/4), int(SCREEN_HEIGHT/2)-15);
+
+        if(this->data->game_score == this->data->scores[0]){
+            this->medal.setTexture(this->data->assets.GetTexture("Gold Medal"));
+        } else if (this->data->game_score == this->data->scores[1]){
+            this->medal.setTexture(this->data->assets.GetTexture("Silver Medal"));
+        } else if (this->data->game_score == this->data->scores[2]){
+            this->medal.setTexture(this->data->assets.GetTexture("Bronze Medal"));
+        }
+        this->medal.setOrigin(
+                this->medal.getGlobalBounds().width/2,
+                this->medal.getGlobalBounds().height/2
+                );
+        this->medal.setPosition(
+                int(SCREEN_WIDTH/2)-150,
+                int(SCREEN_HEIGHT/2)+20
+                );
     }
 
     void GameOverState::HandleInput(){
@@ -82,6 +102,7 @@ namespace flappy
         this->data->window.draw(background);
         this->data->window.draw(title);
         this->data->window.draw(body);
+        this->data->window.draw(medal);
         this->data->window.draw(this->best_score);
         this->data->window.draw(this->game_score);
         this->data->window.display();

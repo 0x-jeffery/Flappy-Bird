@@ -36,6 +36,10 @@
 #define BIRD_3_FILEPATH "../assets/res/bird-03.png"
 #define BIRD_4_FILEPATH "../assets/res/bird-04.png"
 
+#define GOLD_MEDAL_FILEPATH "../assets/res/Gold-Medal.png"
+#define SILVER_MEDAL_FILEPATH "../assets/res/Silver-Medal.png"
+#define BRONZE_MEDAL_FILEPATH "../assets/res/Bronze-Medal.png"
+
 #define LAND_FILEPATH "../assets/res/land.png"
 
 #define HIT_SOUND_FILEPATH "../assets/audio/Hit.wav"
