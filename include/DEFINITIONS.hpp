@@ -1,5 +1,7 @@
 #pragma once
 
+extern bool muted;
+
 #define SCREEN_WIDTH 769
 #define SCREEN_HEIGHT 1024
 

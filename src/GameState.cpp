@@ -2,8 +2,14 @@
 #include "GameState.hpp"
 #include "DEFINITIONS.hpp"
 #include <SFML/Audio/Sound.hpp>
+#include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Window/Keyboard.hpp>
+#include <cmath>
+#include <iomanip>
+#include <iostream>
+#include <ostream>
+#include <sstream>
 #include <string>
 
 namespace flappy
@@ -16,6 +22,7 @@ namespace flappy
         this->speed = 0;
 
         this->data->assets.LoadFont("Flappy Font", FLAPPY_FONT_FILEPATH);
+        this->data->assets.LoadFont("Marker Font", MARKER_FONT_FILEPATH);
         this->data->assets.LoadTexture("Game State Background", GAME_BACKGROUND_FILEPATH);
         this->data->assets.LoadTexture("Pipe Up", PIPE_UP_FILEPATH);
         this->data->assets.LoadTexture("Pipe Down", PIPE_DOWN_FILEPATH);
@@ -35,10 +42,20 @@ namespace flappy
         this->hit_sound.setBuffer(this->data->assets.GetSoundBuffer("Hit Sound"));
         this->flap_sound.setBuffer(this->data->assets.GetSoundBuffer("Flap Sound"));
         this->score_sound.setBuffer(this->data->assets.GetSoundBuffer("Score Sound"));
+
         this->score_text.setFont(this->data->assets.GetFont("Flappy Font"));
         this->score_text.setCharacterSize(SCORE_FONT_SIZE);
         this->score_text.setOrigin(this->score_text.getGlobalBounds().width/2, this->score_text.getGlobalBounds().height/2);
         this->score_text.setPosition(int(SCREEN_WIDTH/2), 10);
+
+        this->keybinds.setFont(this->data->assets.GetFont("Marker Font"));
+        this->keybinds.setString("SPACE = Jump \nP = Toggle Pause \nM = Toggle Mute\nQ = Quit");
+        this->keybinds.setPosition(10, int(SCREEN_HEIGHT/2)+300);
+        this->keybinds.setFillColor(sf::Color::Black);
+
+        this->speed_text.setFont(this->data->assets.GetFont("Marker Font"));
+        this->speed_text.setPosition(int(SCREEN_WIDTH)-150, int(SCREEN_HEIGHT/2)+300);
+        this->speed_text.setFillColor(sf::Color::Black);
     }
 
     void GameState::HandleInput(){
@@ -53,7 +70,7 @@ namespace flappy
                 case sf::Event::KeyPressed:
                     switch(event.key.code){
                         case sf::Keyboard::Space:{
-                            this->flap_sound.play();
+                            if(!muted) this->flap_sound.play();
                             this->bird->Jump();
                             break;
                         }
@@ -64,6 +81,7 @@ namespace flappy
                             Pause();
                             break;
                         case sf::Keyboard::M:           // Mute
+                            Mute();
                             break;
                         default:
                             break;
@@ -80,13 +98,13 @@ namespace flappy
         if(!this->paused) {
 
             if(ExistsScoringCollision()){
-                this->score_sound.play();
+                if(!muted) this->score_sound.play();
                 this->data->game_score++;
                 this->speed += 0.05;
             }
 
             if(ExistsEndingCollision()){
-                this->hit_sound.play();
+                if(!muted) this->hit_sound.play();
                 SettleHighScores(this->data->game_score);
                 this->data->machine.AddState(StateRef(new GameOverState(this->data)));
             }
@@ -101,6 +119,10 @@ namespace flappy
             }
 
             this->score_text.setString(std::to_string(this->data->game_score));
+            std::ostringstream ss;
+            ss << std::fixed << std::setprecision(2) << std::round(this->speed*100.0)/100.0;
+            std::string roundedString = ss.str();
+            this->speed_text.setString("Speed: " + roundedString);
         }
     }
 
@@ -111,6 +133,8 @@ namespace flappy
         this->land->DrawLand();
         this->bird->DrawBird();
         this->data->window.draw(this->score_text);
+        this->data->window.draw(this->keybinds);
+        this->data->window.draw(this->speed_text);
         this->data->window.display();
     }
 
@@ -148,7 +172,7 @@ namespace flappy
       this->paused = !this->paused;  
     }
 
-    void GameState::Resume(){
-
+    void GameState::Mute(){
+        muted = !muted;
     }
 }
