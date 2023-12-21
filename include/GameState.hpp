@@ -35,8 +35,6 @@ namespace flappy
             sf::Sound flap_sound;
             sf::Sound score_sound;
             sf::Text score_text;
-            sf::Text speed_text;
-            sf::Text keybinds;
             float speed;
             bool paused;
             bool muted = false;
