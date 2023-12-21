@@ -40,5 +40,6 @@ namespace flappy
 
             bool ExistsEndingCollision();
             bool ExistsScoringCollision();
+            void SettleHighScores(int score);
     };
 }

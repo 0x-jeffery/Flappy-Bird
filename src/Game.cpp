@@ -6,7 +6,9 @@
 namespace flappy
 {
     Game::Game(int width, int height, std::string title){
-        this->data->high_score = 0;
+       for (int i=0; i<3; i++) {
+           this->data->scores[i] = 0;
+       } 
         srand(time(NULL));
         data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
         data->machine.AddState(StateRef(new SplashState(this->data)));

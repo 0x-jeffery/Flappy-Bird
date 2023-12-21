@@ -14,7 +14,7 @@ namespace flappy
         AssetManager assets;
         InputManager input;
         unsigned short int game_score;
-        unsigned short int high_score;
+        unsigned short int scores[3];
     };
 
     typedef std::shared_ptr<GameData> GameDataRef;

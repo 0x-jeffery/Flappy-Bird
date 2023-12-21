@@ -4,6 +4,8 @@
 #include <SFML/Audio/Sound.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Window/Keyboard.hpp>
+#include <iostream>
+#include <ostream>
 #include <string>
 
 namespace flappy
@@ -78,23 +80,28 @@ namespace flappy
 
     void GameState::Update(float dt){
         if(!this->paused) {
-            if(ExistsEndingCollision()){
-                this->hit_sound.play();
-                this->data->high_score = this->data->game_score > this->data->high_score ? this->data->game_score : this->data->high_score;
-                this->data->machine.AddState(StateRef(new GameOverState(this->data)));
-            }
+
             if(ExistsScoringCollision()){
                 this->score_sound.play();
                 this->data->game_score++;
                 this->speed += 0.05;
             }
+
+            if(ExistsEndingCollision()){
+                this->hit_sound.play();
+                SettleHighScores(this->data->game_score);
+                this->data->machine.AddState(StateRef(new GameOverState(this->data)));
+            }
+
             this->pipe->MovePipes(dt, this->speed);
             this->bird->MoveBird(dt);
             this->land->MoveLand(dt, this->speed);
+
             if(this->clock.getElapsedTime().asSeconds() > PIPE_SPAWN_FREQUENCY - this->speed){
                 this->pipe->SpawnPipes();
                 this->clock.restart();
             }
+
             this->score_text.setString(std::to_string(this->data->game_score));
         }
     }
@@ -127,6 +134,17 @@ namespace flappy
             }
         }
         return false;
+    }
+
+    void GameState::SettleHighScores(int score){
+        for (int i=0; i<3; i++) {
+            if(score > this->data->scores[i]){
+                int temp = this->data->scores[i];
+                this->data->scores[i] = score;
+                score = temp;
+            }
+            std::cout << this->data->scores[i] << std::endl;
+        }
     }
 
     void GameState::Pause(){

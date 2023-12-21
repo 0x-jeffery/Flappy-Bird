@@ -37,7 +37,7 @@ namespace flappy
 
         this->best_score.setFont(this->data->assets.GetFont("Flappy Font"));
         this->best_score.setCharacterSize(SCORE_FONT_SIZE);
-        this->best_score.setString(std::to_string(this->data->high_score));
+        this->best_score.setString(std::to_string(this->data->scores[0]));
         this->best_score.setOrigin(this->best_score.getGlobalBounds().width, this->best_score.getGlobalBounds().height);
         this->best_score.setPosition(int(3*SCREEN_WIDTH/4), int(SCREEN_HEIGHT/2)+85);
 
