@@ -33,7 +33,8 @@ chmod u+x run.sh
 **run.sh** is a bash script designed to compile the project and include the SFML library.
 
 ## Snapshots
-<br>
+![Snapshot1](assets/snapshots/fb1.png)
+![Snapshot2](assets/snapshots/fb2.png)
 
 ## License
 Standard MIT license. Feel free to modify as you please.
