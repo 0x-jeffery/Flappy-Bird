@@ -21,7 +21,9 @@ sudo apt-get install libsfml-dev
 brew install sfml
 ```
 
-* **Windows** ... no, get a life. <3
+* **Windows** 
+Install SFML dependency
+Build and run .exe file.
 
 2. ### Clone & Build
 ```bash
