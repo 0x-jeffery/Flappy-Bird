@@ -43,7 +43,7 @@ chmod u+x run.sh
 Standard MIT license. Feel free to modify as you please.
 
 ## Author
-Created by [@Jaffreh](https://github.com/Jaffreh)
+Created by [@jeffery-frederic](https://github.com/jeffery-frederic)
 
 <br>
 P.S. This game is inspired by the original Flappy Bird game created by Dong Nguyen. Special thanks to the SFML development team for providing a fantastic multimedia library for C++.
