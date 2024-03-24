@@ -30,7 +30,7 @@ namespace flappy
         return this->sounds.at(name);
     }
 
-    void AssetManager::DeleteSoundBuffers(){
-        this->sounds.clear();
+    void AssetManager::ClearSounds(){
+        sounds.clear();
     }
 }

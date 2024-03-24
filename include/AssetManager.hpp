@@ -18,6 +18,8 @@ namespace flappy
             void LoadSoundBuffer(std::string name, std::string filename);
             sf::SoundBuffer &GetSoundBuffer(std::string name);
 
+            void ClearSounds();
+
         private:
             std::map<std::string, sf::Texture> textures;
             std::map<std::string, sf::Font> fonts;
