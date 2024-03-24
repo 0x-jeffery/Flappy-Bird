@@ -20,10 +20,11 @@ sudo apt-get install libsfml-dev
 ```zsh
 brew install sfml
 ```
+Also disregard the shared_ptr issues with clangd. These have no effect on how the application runs.
 
 * **Windows** \
 Install SFML dependency \
-Build and run .exe file.
+Build and run .exe file. (Not tested on Windows)
 
 2. ### Clone & Build
 ```bash
