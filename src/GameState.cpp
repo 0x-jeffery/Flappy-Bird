@@ -44,7 +44,6 @@ namespace flappy
         this->score_text.setCharacterSize(SCORE_FONT_SIZE);
         this->score_text.setOrigin(this->score_text.getGlobalBounds().width/2, this->score_text.getGlobalBounds().height/2);
         this->score_text.setPosition(int(SCREEN_WIDTH/2), 10);
-
     }
 
     void GameState::HandleInput(){
@@ -53,24 +52,22 @@ namespace flappy
         while(this->data->window.pollEvent(event)){
             switch(event.type){
                 case sf::Event::Closed:
-                    this->data->window.close();
+                    Quit();
                     break;
                 
                 case sf::Event::KeyPressed:
                     switch(event.key.code){
-                        case sf::Keyboard::Space:{
+                        case sf::Keyboard::Space:       // <Space> => Jump
                             if(!muted) this->flap_sound.play();
                             this->bird->Jump();
                             break;
-                        }
-                        case sf::Keyboard::Q:           // Quit
-                            this->data->assets.ClearSounds(); 
-                            this->data->window.close();
+                        case sf::Keyboard::Q:           // Q => Quit
+                            Quit();
                             break;
-                        case sf::Keyboard::P:           // Pause
+                        case sf::Keyboard::P:           // P => Pause
                             Pause();
                             break;
-                        case sf::Keyboard::M:           // Mute
+                        case sf::Keyboard::M:           // M => Mute
                             Mute();
                             break;
                         default:
@@ -122,15 +119,6 @@ namespace flappy
         this->land->DrawLand();
         this->bird->DrawBird();
         this->data->window.draw(this->score_text);
-
-        sf::Text sig("Created by \n@Jaffreh", this->data->assets.GetFont("Marker Font"));
-        sig.setPosition(10, 10);
-        this->data->window.draw(sig);
-
-        sf::Text text("SPACE = Jump \nP = Toggle Pause \nM = Toggle Mute\nQ = Quit", this->data->assets.GetFont("Marker Font"));
-        text.setPosition(10, int(SCREEN_HEIGHT/2)+300);
-        text.setFillColor(sf::Color::Black);
-        this->data->window.draw(text);
         this->data->window.display();
     }
 
@@ -165,10 +153,15 @@ namespace flappy
     }
 
     void GameState::Pause(){
-      this->paused = !this->paused;  
+       this->paused = !this->paused; 
     }
 
     void GameState::Mute(){
-        muted = !muted;
+        this->muted = !this->muted; 
+    }
+
+    void GameState::Quit(){
+        this->data->assets.ClearSounds();
+        this->data->window.close();
     }
 }

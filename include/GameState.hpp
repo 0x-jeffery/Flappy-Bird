@@ -1,19 +1,20 @@
 #pragma once
 
-#include "Pipe.hpp"
-#include "State.hpp"
-#include "Game.hpp"
-#include "Land.hpp"
-#include "Bird.hpp"
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 
+#include "Pipe.hpp"
+#include "State.hpp"
+#include "Game.hpp"
+#include "Land.hpp"
+#include "Bird.hpp"
+
 namespace flappy
 {
-    class GameState : public State{
+    class GameState : public State {
         public:
             GameState(GameDataRef data);
 
@@ -23,6 +24,7 @@ namespace flappy
             void Draw(float dt);
             void Pause();
             void Mute();
+            void Quit();
 
         private:
             sf::Clock clock;
@@ -31,13 +33,10 @@ namespace flappy
             Land *land;
             Pipe *pipe;
             sf::Sprite background;
-            sf::Sound hit_sound;
-            sf::Sound flap_sound;
-            sf::Sound score_sound;
+            sf::Sound hit_sound, flap_sound, score_sound;
             sf::Text score_text;
             float speed;
-            bool paused;
-            bool muted = false;
+            bool paused, muted = false;
 
             bool ExistsEndingCollision();
             bool ExistsScoringCollision();

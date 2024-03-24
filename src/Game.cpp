@@ -39,6 +39,5 @@ namespace flappy
             interpolation = accumulator/dt;
             this->data->machine.GetActiveState()->Draw(interpolation);
         }
-
     }
 }
