@@ -13,7 +13,7 @@ namespace flappy
 
     void GameOverState::Init(){
         this->data->assets.LoadTexture("Game Over State Background", GAME_OVER_BACKGROUND_FILEPATH);
-        this->data->assets.LoadTexture("Game Over Title", GAME_TITLE_FILEPATH);
+        this->data->assets.LoadTexture("Game Over Title", GAME_OVER_TITLE_FILEPATH);
         this->data->assets.LoadTexture("Game Over Body", GAME_OVER_BODY_FILEPATH);
         this->data->assets.LoadTexture("Gold Medal", GOLD_MEDAL_FILEPATH);
         this->data->assets.LoadTexture("Silver Medal", SILVER_MEDAL_FILEPATH);
