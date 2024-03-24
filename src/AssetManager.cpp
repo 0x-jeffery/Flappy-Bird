@@ -29,4 +29,8 @@ namespace flappy
     sf::SoundBuffer &AssetManager::GetSoundBuffer(std::string name){
         return this->sounds.at(name);
     }
+
+    void AssetManager::DeleteSoundBuffers(){
+        this->sounds.clear();
+    }
 }

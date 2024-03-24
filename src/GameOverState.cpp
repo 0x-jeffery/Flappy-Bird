@@ -82,7 +82,7 @@ namespace flappy
                             this->data->window.close();
                             break;
                         case sf::Keyboard::R:
-                            this->data->machine.AddState(StateRef(new GameState(data)));
+                            this->data->machine.AddState(StateRef(new GameState(data)), true);
                             break;
                         default:
                             break;

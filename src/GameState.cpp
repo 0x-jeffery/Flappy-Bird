@@ -25,18 +25,18 @@ namespace flappy
         this->data->assets.LoadTexture("Bird Frame 1", BIRD_1_FILEPATH);
         this->data->assets.LoadTexture("Bird Frame 2", BIRD_2_FILEPATH);
         this->data->assets.LoadTexture("Bird Frame 3", BIRD_3_FILEPATH);
-        this->data->assets.LoadSoundBuffer("Hit Sound", HIT_SOUND_FILEPATH);
-        this->data->assets.LoadSoundBuffer("Flap Sound", FLAP_SOUND_FILEPATH);
-        this->data->assets.LoadSoundBuffer("Score Sound", POINT_SOUND_FILEPATH);
+        // this->data->assets.LoadSoundBuffer("Hit Sound", HIT_SOUND_FILEPATH);
+        // this->data->assets.LoadSoundBuffer("Flap Sound", FLAP_SOUND_FILEPATH);
+        // this->data->assets.LoadSoundBuffer("Score Sound", POINT_SOUND_FILEPATH);
 
         this->bird = new Bird(this->data);
         this->land = new Land(this->data);
         this->pipe = new Pipe(this->data);
 
         this->background.setTexture(this->data->assets.GetTexture("Game State Background"));
-        this->hit_sound.setBuffer(this->data->assets.GetSoundBuffer("Hit Sound"));
-        this->flap_sound.setBuffer(this->data->assets.GetSoundBuffer("Flap Sound"));
-        this->score_sound.setBuffer(this->data->assets.GetSoundBuffer("Score Sound"));
+        // this->hit_sound.setBuffer(this->data->assets.GetSoundBuffer("Hit Sound"));
+        // this->flap_sound.setBuffer(this->data->assets.GetSoundBuffer("Flap Sound"));
+        // this->score_sound.setBuffer(this->data->assets.GetSoundBuffer("Score Sound"));
 
         this->score_text.setFont(this->data->assets.GetFont("Flappy Font"));
         this->score_text.setCharacterSize(SCORE_FONT_SIZE);
@@ -57,7 +57,7 @@ namespace flappy
                 case sf::Event::KeyPressed:
                     switch(event.key.code){
                         case sf::Keyboard::Space:{
-                            if(!muted) this->flap_sound.play();
+                            // if(!muted) this->flap_sound.play();
                             this->bird->Jump();
                             break;
                         }
@@ -85,14 +85,15 @@ namespace flappy
         if(!this->paused) {
 
             if(ExistsScoringCollision()){
-                if(!muted) this->score_sound.play();
+                // if(!muted) this->score_sound.play();
                 this->data->game_score++;
                 this->speed += 0.05;
             }
 
             if(ExistsEndingCollision()){
-                if(!muted) this->hit_sound.play();
+                // if(!muted) this->hit_sound.play();
                 SettleHighScores(this->data->game_score);
+                this->clock.restart();
                 this->data->machine.AddState(StateRef(new GameOverState(this->data)));
             }
 
