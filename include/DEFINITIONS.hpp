@@ -12,6 +12,12 @@ extern bool muted;
 #define ARIAL_FONT_FILEPATH "../assets/fonts/arial.ttf"
 #define SCORE_FONT_SIZE 70 
 
+#define PAUSE_BUTTON "../assets/res/PauseButton.png"
+#define UNPAUSE_BUTTON "../assets/res/UnpauseButton.png"
+
+#define MUTE_BUTTON "../assets/res/MutedButton.png"
+#define UNMUTED_BUTTON "../assets/res/UnmutedButton.png"
+
 #define SPLASH_SCENE_BACKGROUND_FILEPATH "../assets/res/Splash Background.png"
 #define MAIN_MENU_BACKGROUND_FILEPATH "../assets/res/sky.png"
 #define GAME_BACKGROUND_FILEPATH "../assets/res/sky.png"

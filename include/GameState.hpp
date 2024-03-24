@@ -32,7 +32,7 @@ namespace flappy
             Bird *bird;
             Land *land;
             Pipe *pipe;
-            sf::Sprite background;
+            sf::Sprite background, pause_button, unpause_button, mute_button, unmute_button;
             sf::Sound hit_sound, flap_sound, score_sound;
             sf::Text score_text;
             float speed;

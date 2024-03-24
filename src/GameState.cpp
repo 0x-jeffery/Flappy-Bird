@@ -27,6 +27,10 @@ namespace flappy
         this->data->assets.LoadTexture("Bird Frame 1", BIRD_1_FILEPATH);
         this->data->assets.LoadTexture("Bird Frame 2", BIRD_2_FILEPATH);
         this->data->assets.LoadTexture("Bird Frame 3", BIRD_3_FILEPATH);
+        this->data->assets.LoadTexture("Pause Button", PAUSE_BUTTON);
+        this->data->assets.LoadTexture("Unpause Button", UNPAUSE_BUTTON);
+        this->data->assets.LoadTexture("Mute Button", MUTE_BUTTON);
+        this->data->assets.LoadTexture("Unmute Button", UNMUTED_BUTTON);
         this->data->assets.LoadSoundBuffer("Hit Sound", HIT_SOUND_FILEPATH);
         this->data->assets.LoadSoundBuffer("Flap Sound", FLAP_SOUND_FILEPATH);
         this->data->assets.LoadSoundBuffer("Score Sound", POINT_SOUND_FILEPATH);
@@ -36,6 +40,10 @@ namespace flappy
         this->pipe = new Pipe(this->data);
 
         this->background.setTexture(this->data->assets.GetTexture("Game State Background"));
+        this->pause_button.setTexture(this->data->assets.GetTexture("Pause Button"));
+        this->unpause_button.setTexture(this->data->assets.GetTexture("Unpause Button"));
+        this->mute_button.setTexture(this->data->assets.GetTexture("Mute Button"));
+        this->unmute_button.setTexture(this->data->assets.GetTexture("Unmute Button"));
         this->hit_sound.setBuffer(this->data->assets.GetSoundBuffer("Hit Sound"));
         this->flap_sound.setBuffer(this->data->assets.GetSoundBuffer("Flap Sound"));
         this->score_sound.setBuffer(this->data->assets.GetSoundBuffer("Score Sound"));
@@ -44,6 +52,12 @@ namespace flappy
         this->score_text.setCharacterSize(SCORE_FONT_SIZE);
         this->score_text.setOrigin(this->score_text.getGlobalBounds().width/2, this->score_text.getGlobalBounds().height/2);
         this->score_text.setPosition(int(SCREEN_WIDTH/2), 10);
+
+        this->pause_button.setPosition(10, 10);
+        this->unpause_button.setPosition(10, 10);
+
+        this->mute_button.setPosition(SCREEN_WIDTH-this->mute_button.getGlobalBounds().width-10, 10);
+        this->unmute_button.setPosition(SCREEN_WIDTH-this->unmute_button.getGlobalBounds().width-10, 10);
     }
 
     void GameState::HandleInput(){
@@ -58,8 +72,10 @@ namespace flappy
                 case sf::Event::KeyPressed:
                     switch(event.key.code){
                         case sf::Keyboard::Space:       // <Space> => Jump
-                            if(!muted) this->flap_sound.play();
-                            this->bird->Jump();
+                            if(!this->paused){
+                                if(!muted) this->flap_sound.play();
+                                this->bird->Jump();
+                            }
                             break;
                         case sf::Keyboard::Q:           // Q => Quit
                             Quit();
@@ -119,6 +135,10 @@ namespace flappy
         this->land->DrawLand();
         this->bird->DrawBird();
         this->data->window.draw(this->score_text);
+        if(!this->paused) this->data->window.draw(this->pause_button);
+        else this->data->window.draw(this->unpause_button);
+        if(!this->muted) this->data->window.draw(this->unmute_button);
+        else this->data->window.draw(this->mute_button);
         this->data->window.display();
     }
 
