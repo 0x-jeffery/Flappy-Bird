@@ -2,6 +2,7 @@
 #include "GameState.hpp"
 #include "GameOverState.hpp"
 #include "DEFINITIONS.hpp"
+#include "StateMachine.hpp"
 #include <SFML/Window/Keyboard.hpp>
 #include <string>
 
@@ -18,6 +19,7 @@ namespace flappy
         this->data->assets.LoadTexture("Gold Medal", GOLD_MEDAL_FILEPATH);
         this->data->assets.LoadTexture("Silver Medal", SILVER_MEDAL_FILEPATH);
         this->data->assets.LoadTexture("Bronze Medal", BRONZE_MEDAL_FILEPATH);
+        this->data->assets.LoadTexture("Play Button", PLAY_BUTTON_FILEPATH);
 
         this->background.setTexture(this->data->assets.GetTexture("Game Over State Background"));
         this->title.setTexture(this->data->assets.GetTexture("Game Over Title"));
@@ -66,6 +68,12 @@ namespace flappy
                 int(SCREEN_WIDTH/2)-150,
                 int(SCREEN_HEIGHT/2)+20
                 );
+
+        this->play_button.setTexture(data->assets.GetTexture("Play Button"));
+        this->play_button.setPosition(
+                (SCREEN_WIDTH/2) - (this->play_button.getGlobalBounds().width/2),
+                (SCREEN_HEIGHT/2) - (this->play_button.getGlobalBounds().height/2) + 300
+        );
     }
 
     void GameOverState::HandleInput(){
@@ -81,8 +89,8 @@ namespace flappy
                         case sf::Keyboard::Q:
                             this->data->window.close();
                             break;
-                        case sf::Keyboard::R:
-                            this->data->machine.AddState(StateRef(new GameState(data)), true);
+                        case sf::Keyboard::R:       // R => Restart
+                            RestartGame();
                             break;
                         default:
                             break;
@@ -90,6 +98,11 @@ namespace flappy
                 default:
                     break;
             }
+        }
+
+
+        if(data->input.IsSpriteClicked(play_button, sf::Mouse::Left, data->window)){
+            RestartGame();
         }
     }
 
@@ -105,6 +118,11 @@ namespace flappy
         this->data->window.draw(medal);
         this->data->window.draw(this->best_score);
         this->data->window.draw(this->game_score);
+        this->data->window.draw(this->play_button);
         this->data->window.display();
+    }
+
+    void GameOverState::RestartGame(){
+       this->data->machine.AddState(StateRef(new GameState(data)), true); 
     }
 }

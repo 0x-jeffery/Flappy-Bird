@@ -19,12 +19,10 @@ namespace flappy
             void HandleInput();
             void Update(float dt);
             void Draw(float dt);
+            void RestartGame();
 
         private:
-            sf::Sprite background;
-            sf::Sprite title;
-            sf::Sprite body;
-            sf::Sprite medal;
+            sf::Sprite background, title, body, medal, play_button;
             sf::Text game_score;
             sf::Text best_score;
             GameDataRef data;
